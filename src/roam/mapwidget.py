@@ -117,18 +117,24 @@ class MapWidget(Ui_CanvasWidget, QMainWindow):
         self.editgroup.addAction(self.actionInfo)
 
         self.actionGPS = GPSAction(":/icons/gps", self.canvas, self)
-        self.projecttoolbar.addAction(self.actionGPS)
+        self.toolsToolBar.addAction(self.actionGPS)
 
         self.projecttoolbar.setContextMenuPolicy(Qt.CustomContextMenu)
+        self.toolsToolBar.setContextMenuPolicy(Qt.CustomContextMenu)
 
         gpsspacewidget= QWidget()
         gpsspacewidget.setMinimumWidth(30)
         gpsspacewidget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
-        self.topspaceraction = self.projecttoolbar.insertWidget(self.actionGPS, gpsspacewidget)
+        topspacer = QWidget()
+        topspacer.setMinimumWidth(30)
+        topspacer.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
-        self.dataentryselection = QAction(self.projecttoolbar)
-        self.dataentryaction = self.projecttoolbar.insertAction(self.topspaceraction, self.dataentryselection)
+        self.sidescaperaction = self.toolsToolBar.insertWidget(self.actionGPS, gpsspacewidget)
+        self.topspaceraction = self.projecttoolbar.insertWidget(self.actionHome, topspacer)
+
+        self.dataentryselection = QAction(self.toolsToolBar)
+        self.dataentryaction = self.toolsToolBar.insertAction(self.sidescaperaction, self.dataentryselection)
         self.dataentryselection.triggered.connect(self.select_data_entry)
 
         self.marker = GPSMarker(self.canvas)
@@ -209,7 +215,7 @@ class MapWidget(Ui_CanvasWidget, QMainWindow):
 
     def queue_feature_for_edit(self, form, feature):
         def trigger_default_action():
-            for action in self.projecttoolbar.actions():
+            for action in self.toolsToolBar.actions():
                 if action.property('dataentry') and action.isdefault:
                     action.trigger()
                     self.canvas.mapTool().setEditMode(True, feature.geometry())
@@ -393,7 +399,7 @@ class MapWidget(Ui_CanvasWidget, QMainWindow):
             action.setProperty("dataentry", True)
             self.editgroup.addAction(action)
             self.layerbuttons.append(action)
-            self.projecttoolbar.insertAction(self.topspaceraction, action)
+            self.toolsToolBar.insertAction(self.sidescaperaction, action)
             action.setChecked(action.isdefault)
 
         if hasattr(tool, 'geometryComplete'):

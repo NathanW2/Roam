@@ -53,6 +53,26 @@
    <addaction name="actionPan"/>
    <addaction name="actionZoom_In"/>
    <addaction name="actionZoom_Out"/>
+  </widget>
+  <widget class="HideableToolbar" name="toolsToolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="movable">
+    <bool>false</bool>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::NoToolBarArea</set>
+   </property>
+   <property name="floatable">
+    <bool>false</bool>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>RightToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
    <addaction name="actionInfo"/>
   </widget>
   <action name="actionHome">

@@ -28,7 +28,7 @@ class GPSAction(QAction):
 
     def __init__(self, icon, canvas, parent):
         super(GPSAction, self).__init__(QIcon(icon),
-                                        QApplication.translate("GPSAction", "Enable GPS", None,
+                                        QApplication.translate("GPSAction", "GPS", None,
                                                                QApplication.UnicodeUTF8),
                                         parent)
         self.canvas = canvas

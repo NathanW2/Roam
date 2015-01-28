@@ -90,7 +90,7 @@ class EndCaptureAction(BaseAction):
                                                tool,
                                                parent)
         self.setObjectName("EnaCaptureAction")
-        self.setText(self.tr("End Capture"))
+        self.setText(self.tr("Finish"))
 
 
 class CaptureAction(BaseAction):
