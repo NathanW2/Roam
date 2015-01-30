@@ -458,12 +458,12 @@ class MapWidget(Ui_CanvasWidget, QMainWindow):
 
     def clearCapatureTools(self):
         captureselected = False
-        for action in self.projecttoolbar.actions():
+        for action in self.toolsToolBar.actions():
             if action.objectName() == "capture" and action.isChecked():
                 captureselected = True
 
             if action.property('dataentry'):
-                self.projecttoolbar.removeAction(action)
+                self.toolsToolBar.removeAction(action)
         return captureselected
 
     def toggleRasterLayers(self):
